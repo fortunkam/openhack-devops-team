@@ -81,4 +81,9 @@ public class UserRepositoryServiceTest {
         }
         verify(userRepository, never()).save(profile);
     }
+
+    @Test
+    public void testDodgy() {
+        assertEquals(true, true);
+    }
 }
