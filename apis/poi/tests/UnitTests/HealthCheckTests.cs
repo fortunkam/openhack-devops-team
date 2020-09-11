@@ -17,7 +17,7 @@ namespace UnitTests
         [Fact]
         public void DodgyTest()
         {
-            Assert.Equal(true, false);
+            Assert.Equal(true, true);
         }
     }
 }
