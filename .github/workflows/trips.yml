@@ -47,7 +47,7 @@ jobs:
           AreaPath: "openhack-devopsv2"
           IterationPath: "openhack-devopsv2\\Iteration 1"
           GithubToken: "GithubToken"
-          WorkflowFileName: "poi.yml"
+          WorkflowFileName: "trips.yml"
       env:
         PAT: ${{ secrets.AZURE_DEVOPS_TOKEN}}
         GithubToken: ${{ secrets.GIT_PAT}}
