@@ -15,6 +15,7 @@ env:
   ACR_USER: openhackarw7awr1acr
   IMAGE_NAME: devopsoh/api-trips 
   IMAGE_TAG: ${{ github.run_id }}
+  APP_NAME: openhackarw7awr1trips
 
 jobs:
   build_trips:
@@ -75,6 +76,12 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           docker push $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
+      - uses: azure/webapps-deploy@v2
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        with:
+          app-name: $APP_NAME
+          publish-profile: ${{ secrets.TRIPS_WEBAPP_PUBLISH_PROFILE }}
+          images: $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
       - name: Failed-Run
         uses: stefanstranger/azuredevops-bug-action@v1
         if: failure()
