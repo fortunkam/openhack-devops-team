@@ -11,7 +11,7 @@ var Parser = require('swagger-parser');
  * Test for /healthcheck/user
  */
 Test('DodgyTest', function(t){
-    t.error({},'Bad Test');
+    //t.error({},'Bad Test');
 });
 Test('/healthcheck/user', function (t) {
     var apiPath = Path.resolve(__dirname, '../../config/swagger.json');

@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'apis/poi/**'
+      - '.github/workflows/poi.yml'
   pull_request:
     paths:
       - 'apis/poi/**'
+      - '.github/workflows/poi.yml'
     branches: [ master ]
 
 jobs:

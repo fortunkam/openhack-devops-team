@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'apis/trips/**'
+      - '.github/workflows/trips.yml'
   pull_request:
     paths:
       - 'apis/trips/**'
+      - '.github/workflows/trips.yml'
     branches: [ master ]
 
 jobs:

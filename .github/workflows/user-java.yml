@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'apis/user-java/**'
+      - '.github/workflows/user-java.yml'
   pull_request:
     paths:
       - 'apis/user-java/**'
+      - '.github/workflows/user-java.yml'
     branches: [ master ]
 
 jobs:

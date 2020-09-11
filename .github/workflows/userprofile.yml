@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'apis/userprofile/**'
+      - '.github/workflows/userprofile.yml'
   pull_request:
     paths:
       - 'apis/userprofile/**'
+      - '.github/workflows/userprofile.yml'
     branches: [ master ]
 
 jobs:
