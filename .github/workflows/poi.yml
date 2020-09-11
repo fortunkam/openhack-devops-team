@@ -23,4 +23,4 @@ jobs:
     - name: Build
       run: dotnet build 'apis/poi/poi.sln' --configuration Release --no-restore
     - name: Test
-      run: dotnet test 'apis/poi/poi.sln' --no-restore --verbosity normal
+      run: dotnet test 'apis/poi/tests/UnitTests/UnitTests.csproj' --no-restore --verbosity normal
