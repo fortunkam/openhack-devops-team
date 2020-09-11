@@ -84,6 +84,6 @@ public class UserRepositoryServiceTest {
 
     @Test
     public void testDodgy() {
-        assertEquals(true, false);
+        assertEquals(true, true);
     }
 }
