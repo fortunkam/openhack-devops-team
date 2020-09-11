@@ -32,10 +32,10 @@ jobs:
         fi
 
     - name: Build
-      run: go build -v /apis/trips/
+      run: go build -v ./apis/trips/
 
     - name: Test
-      run: go test -v /apis/trips/
+      run: go test -v ./apis/trips/
     - name: Failed-Run
       uses: stefanstranger/azuredevops-bug-action@v1
       if: failure()
