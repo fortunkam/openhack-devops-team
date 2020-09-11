@@ -31,3 +31,8 @@ func TestHealthRoute(t *testing.T) {
 	tripSvc.RunAPITests(t, router, healthRouteTests[0:1])
 
 }
+
+func TestDodgy(t *testing.T) {
+	t.Log("DODGY TEST")
+	t.Error("Expected:", 1, "Got:", 0)
+}
