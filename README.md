@@ -1,3 +1,4 @@
+[![Board Status](https://dev.azure.com/mafortun/9ab7ce8f-4d3b-40a7-a6ad-e35538659b75/9c593014-1fbb-4463-9211-dddbc8d92c9b/_apis/work/boardbadge/465dc753-9349-4fcb-a148-53c8a823280d)](https://dev.azure.com/mafortun/9ab7ce8f-4d3b-40a7-a6ad-e35538659b75/_boards/board/t/9c593014-1fbb-4463-9211-dddbc8d92c9b/Microsoft.RequirementCategory)
 # Project Name
 
 The DevOps open hack event is designed to foster learning via implementing DevOps practices with a series of challenges.
