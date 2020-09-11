@@ -13,5 +13,11 @@ namespace UnitTests
             Assert.Equal("Healthy", new Healthcheck().Status);
 
         }
+
+        [Fact]
+        public void DodgyTest()
+        {
+            Assert.Equal(true, false);
+        }
     }
 }
