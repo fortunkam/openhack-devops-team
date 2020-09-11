@@ -1,5 +1,5 @@
 
-# POI Service (Amend)
+# POI Service
 
 ## Overview
 
