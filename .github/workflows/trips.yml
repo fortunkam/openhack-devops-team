@@ -84,7 +84,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         with:
           app-name: 'openhackarw7awr1trips'
-          images: $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
+          images: '$ACR_NAME/$IMAGE_NAME:$IMAGE_TAG'
       - name: Failed-Run
         uses: stefanstranger/azuredevops-bug-action@v1
         if: failure()
