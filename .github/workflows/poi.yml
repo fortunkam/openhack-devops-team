@@ -10,6 +10,11 @@ on:
       - 'apis/poi/**'
       - '.github/workflows/poi.yml'
     branches: [ master ]
+env:
+  ACR_NAME: openhackarw7awr1acr.azurecr.io
+  ACR_USER: openhackarw7awr1acr
+  IMAGE_NAME: devopsoh/api-poi 
+  IMAGE_TAG: ${{ github.run_id }}
 
 jobs:
   build_poi:
@@ -41,3 +46,32 @@ jobs:
       env:
         PAT: ${{ secrets.AZURE_DEVOPS_TOKEN}}
         GithubToken: ${{ secrets.GIT_PAT}}
+  push_to_acr:
+    name: Build Docker Image and push to ACR
+    needs: build_poi
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and Tag Docker Image
+        run: | 
+          docker build . -t $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
+      - name: Login to ACR 
+        if: github.event_name == 'push'
+        run:  docker login $ACR_NAME -u $ACR_USER -p ${{ secrets.ACR_PASSWORD }} 
+      - name: Push to ACR
+        if: github.event_name == 'push'
+        run: |
+          docker push $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
+      - name: Failed-Run
+        uses: stefanstranger/azuredevops-bug-action@v1
+        if: failure()
+        with:
+            OrganizationName: "mafortun"
+            PAT: "PAT"
+            ProjectName: "openhack-devopsv2"
+            AreaPath: "openhack-devopsv2"
+            IterationPath: "openhack-devopsv2\\Iteration 1"
+            GithubToken: "GithubToken"
+            WorkflowFileName: "poi.yml"
+        env:
+          PAT: ${{ secrets.AZURE_DEVOPS_TOKEN}}
+          GithubToken: ${{ secrets.GIT_PAT}}
