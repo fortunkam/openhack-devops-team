@@ -1,4 +1,4 @@
-name: .NET Core
+name: POI API (.net core)
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore 'apis/poi/poi.sln'
     - name: Build
       run: dotnet build 'apis/poi/poi.sln' --configuration Release --no-restore
     - name: Test
