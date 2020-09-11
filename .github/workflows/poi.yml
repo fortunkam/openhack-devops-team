@@ -10,7 +10,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build: 
+  build_poi:
+    name: Build POI API 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
