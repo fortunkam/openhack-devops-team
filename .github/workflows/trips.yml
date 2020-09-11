@@ -84,7 +84,10 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         with:
           app-name: $APP_NAME
-          images: $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
+          images: $IMAGE_URI
+        env:
+          APP_NAME: $APP_NAME
+          IMAGE_URI: $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
       - name: Failed-Run
         uses: stefanstranger/azuredevops-bug-action@v1
         if: failure()
