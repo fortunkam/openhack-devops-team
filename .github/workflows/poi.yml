@@ -25,3 +25,17 @@ jobs:
       run: dotnet build 'apis/poi/poi.sln' --configuration Release --no-restore
     - name: Test
       run: dotnet test 'apis/poi/tests/UnitTests/UnitTests.csproj' --no-restore --verbosity normal
+    - name: Failed-Run
+      uses: stefanstranger/azuredevops-bug-action@v1
+      if: failure()
+      with:
+          OrganizationName: "mafortun"
+          PAT: "PAT"
+          ProjectName: "openhack-devopsv2"
+          AreaPath: "openhack-devopsv2"
+          IterationPath: "openhack-devopsv2\\Iteration 1"
+          GithubToken: "GithubToken"
+          WorkflowFileName: "poi.yml"
+      env:
+        PAT: ${{ secrets.AZURE_DEVOPS_TOKEN}}
+        GithubToken: ${{ secrets.GIT_PAT}}
