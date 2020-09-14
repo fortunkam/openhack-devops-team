@@ -5,10 +5,12 @@ on:
     paths:
       - 'apis/trips/**'
       - '.github/workflows/trips.yml'
+      - '.github/workflows/trips-monitor.yml'
   pull_request:
     paths:
       - 'apis/trips/**'
       - '.github/workflows/trips.yml'
+      - '.github/workflows/trips-monitor.yml'
     branches: [ master ]
 env:
   ACR_NAME: openhackarw7awr1acr.azurecr.io

@@ -1,0 +1,14 @@
+name: Trips API (go)
+
+on:
+  workflow_run:
+    workflows: ["Trips API (go)"]
+    branches: [master]
+    types:
+      - completed
+jobs:
+  debug:
+    name: Run Script 
+    runs-on: ubuntu-latest
+    steps:
+    - run echo "Workflow complete"
