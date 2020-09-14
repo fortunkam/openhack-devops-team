@@ -4,9 +4,14 @@ on:
   workflow_run:
     workflows: ["Trips API (go)"]
     branches: [master]
+    
 jobs:
   debug:
     name: Run Script 
     runs-on: ubuntu-latest
     steps:
-    - run: echo $GITHUB_EVENT_PATH
+    - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $URI) -eq 200 ]'
+      env: 
+        URI: https://openhackarw7awr1trips-staging.azurewebsites.net/api/healthcheck/trips
+
+
