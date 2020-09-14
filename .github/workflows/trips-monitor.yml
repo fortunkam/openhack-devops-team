@@ -9,6 +9,4 @@ jobs:
     name: Run Script 
     runs-on: ubuntu-latest
     steps:
-    - run: echo $GITHUB_CONTEXT
-      env:
-        GITHUB_CONTEXT: ${{ fromJson(github) }}
+    - run: echo $GITHUB_EVENT_PATH
