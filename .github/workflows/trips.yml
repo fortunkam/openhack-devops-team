@@ -85,6 +85,7 @@ jobs:
         with:
           app-name: 'openhackarw7awr1trips'
           images: "openhackarw7awr1acr.azurecr.io/devopsoh/api-trips:${{ github.run_id }}"
+          slot-name: "staging"
       - name: Failed-Run
         uses: stefanstranger/azuredevops-bug-action@v1
         if: failure()
