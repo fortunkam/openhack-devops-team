@@ -1,11 +1,11 @@
 name: Trips API - Swap slots
 
-on:
-  workflow_run:
-    workflows: ["Trips API - Monitor Staging"]
-    branches: [master]
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows: ["Trips API - Monitor Staging"]
+#     branches: [master]
+#     types:
+#       - completed
     
 jobs:
   debug:
@@ -16,7 +16,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Restart Staging Slot
+    - name: Swap Staging and Production
       run: az webapp deployment slot swap -n openhackarw7awr1trips -g openhackarw7awr1rg -s staging --target-slot production
     - name: Failed-Run
       uses: stefanstranger/azuredevops-bug-action@v1

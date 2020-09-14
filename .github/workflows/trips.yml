@@ -18,6 +18,8 @@ env:
   IMAGE_NAME: devopsoh/api-trips 
   IMAGE_TAG: ${{ github.run_id }}
   APP_NAME: openhackarw7awr1trips
+  RG_NAME: openhackarw7awr1rg
+
 
 jobs:
   build_trips:
@@ -89,7 +91,13 @@ jobs:
           images: "openhackarw7awr1acr.azurecr.io/devopsoh/api-trips:${{ github.run_id }}"
           slot-name: "staging"
       - name: Restart Staging Slot
-        run: az webapp restart -n openhackarw7awr1trips -g openhackarw7awr1rg -s staging
+        run: az webapp restart -n $APP_NAME -g $RG_NAME -s staging
+      - run: sleep 60
+      - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $URI) -eq 200 ]'
+        env: 
+          URI: https://$APP_NAME-staging.azurewebsites.net/api/healthcheck/trips
+      - name: Swap Staging and Production
+        run: az webapp deployment slot swap -n $APP_NAME -g $RG_NAME -s staging --target-slot production
       - name: Failed-Run
         uses: stefanstranger/azuredevops-bug-action@v1
         if: failure()

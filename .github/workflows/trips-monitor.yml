@@ -1,11 +1,11 @@
 name: Trips API - Monitor Staging
 
-on:
-  workflow_run:
-    workflows: ["Trips API (go)"]
-    branches: [master]
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows: ["Trips API (go)"]
+#     branches: [master]
+#     types:
+#       - completed
     
 jobs:
   debug:
