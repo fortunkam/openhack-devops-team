@@ -19,7 +19,8 @@ env:
   IMAGE_TAG: ${{ github.run_id }}
   APP_NAME: openhackarw7awr1trips
   RG_NAME: openhackarw7awr1rg
-
+  PRODUCTION_URI: "https://$APP_NAME.azurewebsites.net/api/healthcheck/trips"
+  STAGING_URI: "https://$APP_NAME-staging.azurewebsites.net/api/healthcheck/trips"
 
 jobs:
   build_trips:
@@ -93,9 +94,9 @@ jobs:
       - name: Restart Staging Slot
         run: az webapp restart -n $APP_NAME -g $RG_NAME -s staging
       - run: sleep 60
-      - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $URI) -eq 200 ]'
-        env: 
-          URI: https://$APP_NAME-staging.azurewebsites.net/api/healthcheck/trips
+        name: Sleep for a minute to allow container time to spin up
+      - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $STAGING_URI) -eq 200 ]'
+        name: "Run a Healthcheck"
       - name: Swap Staging and Production
         run: az webapp deployment slot swap -n $APP_NAME -g $RG_NAME -s staging --target-slot production
       - name: Failed-Run
