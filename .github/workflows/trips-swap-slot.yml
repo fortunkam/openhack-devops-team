@@ -1,8 +1,8 @@
-name: Trips API - Monitor Staging
+name: Trips API - Swap slots
 
 on:
   workflow_run:
-    workflows: ["Trips API (go)"]
+    workflows: ["Trips API - Monitor Staging"]
     branches: [master]
     types:
       - completed
@@ -12,10 +12,12 @@ jobs:
     name: Run Script 
     runs-on: ubuntu-latest
     steps:
-    - run: sleep 60
-    - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $URI) -eq 200 ]'
-      env: 
-        URI: https://openhackarw7awr1trips-staging.azurewebsites.net/api/healthcheck/trips
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Restart Staging Slot
+      run: az webapp deployment slot swap -n openhackarw7awr1trips -g openhackarw7awr1rg -s staging --target-slot production
     - name: Failed-Run
       uses: stefanstranger/azuredevops-bug-action@v1
       if: failure()
@@ -26,7 +28,7 @@ jobs:
           AreaPath: "openhack-devopsv2"
           IterationPath: "openhack-devopsv2\\Iteration 1"
           GithubToken: "GithubToken"
-          WorkflowFileName: "trips-monitor.yml"
+          WorkflowFileName: "trips-swap-slot.yml"
       env:
         PAT: ${{ secrets.AZURE_DEVOPS_TOKEN}}
         GithubToken: ${{ secrets.GIT_PAT}}
