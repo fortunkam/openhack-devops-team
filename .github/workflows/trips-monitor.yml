@@ -9,4 +9,6 @@ jobs:
     name: Run Script 
     runs-on: ubuntu-latest
     steps:
-    - run: echo ${{ github }}
+    - run: echo "${GITHUB_CONTEXT}"
+      env:
+        GITHUB_CONTEXT: ${{ github }}
