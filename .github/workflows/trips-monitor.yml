@@ -1,4 +1,4 @@
-name: Trips API (go)
+name: Trips API - Monitor
 
 on:
   workflow_run:
