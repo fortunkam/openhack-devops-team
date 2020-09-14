@@ -119,10 +119,10 @@ jobs:
         run: az webapp restart -n $APP_NAME -g $RG_NAME -s staging
       - run: sleep 60
         name: Sleep for a minute to allow container time to spin up
-      - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $STAGING_URI) -eq 200 ]'
+      - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $STAGING_ADDRESS) -eq 200 ]'
         name: "Run a Healthcheck"
         env:
-          STAGING_URI: $STAGING_URI
+          STAGING_ADDRESS: $STAGING_URI
       - name: Swap Staging and Production
         run: az webapp deployment slot swap -n $APP_NAME -g $RG_NAME -s staging --target-slot production
       - name: Failed-Run
