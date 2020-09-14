@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: sleep 60
-    - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $URI) -eq 200 ]'
+    - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $URI) -eq 500 ]'
       env: 
         URI: https://openhackarw7awr1trips-staging.azurewebsites.net/api/healthcheck/trips
 

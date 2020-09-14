@@ -89,7 +89,7 @@ jobs:
           images: "openhackarw7awr1acr.azurecr.io/devopsoh/api-trips:${{ github.run_id }}"
           slot-name: "staging"
       - name: Restart Staging Slot
-        run: az webapp restart -n openhackarw7awr1acr -g openhackarw7awr1rg -s staging
+        run: az webapp restart -n openhackarw7awr1trips -g openhackarw7awr1rg -s staging
       - name: Failed-Run
         uses: stefanstranger/azuredevops-bug-action@v1
         if: failure()
