@@ -119,7 +119,9 @@ jobs:
         run: az webapp restart -n $APP_NAME -g $RG_NAME -s staging
       - run: sleep 60
         name: Sleep for a minute to allow container time to spin up
-      - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" https://openhackarw7awr1trips-staging.azurewebsites.net/api/healthcheck/trips) -eq 200 ]'
+      - run: sh -c '[ $(curl -o -I -L -s -w "%{http_code}" $URI) -eq 200 ]'
+        env: 
+          URI: https://openhackarw7awr1trips-staging.azurewebsites.net/api/healthcheck/trips
         name: "Run a Healthcheck"
       - name: Swap Staging and Production
         run: az webapp deployment slot swap -n $APP_NAME -g $RG_NAME -s staging --target-slot production
