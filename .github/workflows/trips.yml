@@ -145,7 +145,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: ZAP Scan.
+      - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.1.0
         with:
           target: 'https://openhackarw7awr1tripviewer.azurewebsites.net/'
