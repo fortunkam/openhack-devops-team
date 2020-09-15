@@ -142,10 +142,12 @@ jobs:
     needs: deploy_to_webapp
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.1.0
         with:
           target: 'https://openhackarw7awr1tripviewer.azurewebsites.net/'
+          rules_file_name: '.zap/rules.tsv'
       - name: Failed-Run
         uses: stefanstranger/azuredevops-bug-action@v1
         if: failure()
