@@ -138,7 +138,7 @@ jobs:
           PAT: ${{ secrets.AZURE_DEVOPS_TOKEN}}
           GithubToken: ${{ secrets.GIT_PAT}}
   scan_using_zap:
-    name: Deploy to WebApp
+    name: Scan using OWASP ZAP
     needs: deploy_to_webapp
     runs-on: ubuntu-latest
     steps:
