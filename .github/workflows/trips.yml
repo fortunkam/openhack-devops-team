@@ -150,6 +150,7 @@ jobs:
         with:
           target: 'https://openhackarw7awr1tripviewer.azurewebsites.net/'
           rules_file_name: '.zap/rules.tsv'
+          fail_action: true
       - name: Failed-Run
         uses: stefanstranger/azuredevops-bug-action@v1
         if: failure()

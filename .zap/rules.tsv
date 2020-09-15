@@ -9,3 +9,8 @@
 10054	IGNORE	(Cookie Without SameSite Attribute)
 10108	IGNORE	(Reverse Tabnabbing)
 40025	IGNORE	(Proxy Disclosure)
+90027	IGNORE	(Cookie Slack Detector)
+10109	IGNORE	(Modern Web Application)
+10096	IGNORE	(Timestamp Disclosure - Unix)
+10027	IGNORE	(Information Disclosure - Suspicious Comments)
+10104	IGNORE	(User Agent Fuzzer)
